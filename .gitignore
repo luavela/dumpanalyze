@@ -1,0 +1,12 @@
+syntax: glob
+
+README.html
+build
+dist
+dumpanalyze.egg-info
+venv
+.eggs
+.tox
+.idea
+*.pyc
+.DS_Store

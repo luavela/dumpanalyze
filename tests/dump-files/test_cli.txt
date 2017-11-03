@@ -1,0 +1,1094 @@
+---- TRACE 1 start =(command line):1
+0006    KSHORT   5  60
+0007    ISGE     4   5
+0009    ADD      0   0   4
+0010    JMP      5 => 0019
+0019    FORL     1 => 0006
+---- TRACE 1 IR
+....              SNAP   #0   [ ---- ]
+0001 rbp      int SLOAD  #2    CI
+....              SNAP   #1   [ ---- ---- 0001 ---- ---- 0001 ]
+0002       >  int LT     0001  +60
+....              SNAP   #2   [ ---- ---- 0001 ---- ---- 0001 ]
+0003 xmm0  >  flt SLOAD  #1    T
+0004 xmm7     flt CONV   0001  flt.int
+0005 xmm7   + flt ADD    0004  0003
+0006 rbp    + int ADD    0001  +1
+....              SNAP   #3   [ ---- 0005 ]
+0007       >  int LE     0006  +300
+....              SNAP   #4   [ ---- 0005 0006 ---- ---- 0006 ]
+0008 ------------ LOOP ------------
+....              SNAP   #5   [ ---- 0005 0006 ---- ---- 0006 ]
+0009       >  int LT     0006  +60
+0010 xmm6     flt CONV   0006  flt.int
+0011 xmm7   + flt ADD    0010  0005
+0012 rbp    + int ADD    0006  +1
+....              SNAP   #6   [ ---- 0011 ]
+0013       >  int LE     0012  +300
+0014 rbp      int PHI    0006  0012
+0015 xmm7     flt PHI    0005  0011
+---- TRACE 1 mcode 113
+0bccff83  mov r11, 0x7f5c3bfde608 
+0bccff8d  mov dword [r11], 0x1    
+0bccff94  cvtsd2si ebp, qword [r10+0x10]
+0bccff9a  cmp ebp, 0x3c           
+0bccff9d  jge 0xbcc0014           	->1
+0bccffa3  cmp dword [r10+0x8], 0xfffffff2
+0bccffab  jnz 0xbcc0018           	->2
+0bccffb1  movsd xmm0, qword [r10] 
+0bccffb6  xorps xmm7, xmm7        
+0bccffb9  cvtsi2sd xmm7, ebp      
+0bccffbd  addsd xmm7, xmm0        
+0bccffc1  add ebp, 0x1            
+0bccffc4  cmp ebp, 0x12c          
+0bccffca  jg 0xbcc001c            	->3
+-> LOOP:
+0bccffd0  cmp ebp, 0x3c           
+0bccffd3  jge 0xbcc0024           	->5
+0bccffd9  xorps xmm6, xmm6        
+0bccffdc  cvtsi2sd xmm6, ebp      
+0bccffe0  addsd xmm7, xmm6        
+0bccffe4  add ebp, 0x1            
+0bccffe7  cmp ebp, 0x12c          
+0bccffed  jle 0xbccffd0           	->LOOP
+0bccffef  jmp 0xbcc0028           	->6
+---- TRACE 1 stop -> loop
+
+---- TRACE 1 exit 5
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 000000000000000000
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x000000000000003c
+rsi = 0x00007f5c3bfe0870
+rdi = 0x00007f5c3bfe03d8
+r8  = 0x0000000000000026
+r9  = 0x0000000000000026
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =             +1653
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = -5.4874582225771e+303
+xmm5  =                +0
+xmm6  =               +59
+xmm7  =             +1770
+xmm8  = +2.1840409025922e-317
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +5.4110892669614e-312
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 1 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 000000000000000000
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x000000000000003d
+rsi = 0x00007f5c3bfec114
+rdi = 0x00007f5c3bfde790
+r8  = 0x00007f5c3bffe780
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =               +61
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = +3.2252605360517e-319
+xmm5  =                +0
+xmm6  =               +59
+xmm7  =             +1770
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 1 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 000000000000000000
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x000000000000003e
+rsi = 0x00007f5c3bfec114
+rdi = 0x00007f5c3bfde790
+r8  = 0x00007f5c3bffe780
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =               +62
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = +3.2252605360517e-319
+xmm5  =                +0
+xmm6  =               +59
+xmm7  =             +1770
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 1 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 000000000000000000
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x000000000000003f
+rsi = 0x00007f5c3bfec114
+rdi = 0x00007f5c3bfde790
+r8  = 0x00007f5c3bffe780
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =               +63
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = +3.2252605360517e-319
+xmm5  =                +0
+xmm6  =               +59
+xmm7  =             +1770
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 1 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 000000000000000000
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x0000000000000040
+rsi = 0x00007f5c3bfec114
+rdi = 0x00007f5c3bfde790
+r8  = 0x00007f5c3bffe780
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =               +64
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = +3.2252605360517e-319
+xmm5  =                +0
+xmm6  =               +59
+xmm7  =             +1770
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 1 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 000000000000000000
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x0000000000000041
+rsi = 0x00007f5c3bfec114
+rdi = 0x00007f5c3bfde790
+r8  = 0x00007f5c3bffe780
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =               +65
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = +3.2252605360517e-319
+xmm5  =                +0
+xmm6  =               +59
+xmm7  =             +1770
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 1 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 000000000000000000
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x0000000000000042
+rsi = 0x00007f5c3bfec114
+rdi = 0x00007f5c3bfde790
+r8  = 0x00007f5c3bffe780
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =               +66
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = +3.2252605360517e-319
+xmm5  =                +0
+xmm6  =               +59
+xmm7  =             +1770
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 1 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 000000000000000000
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x0000000000000043
+rsi = 0x00007f5c3bfec114
+rdi = 0x00007f5c3bfde790
+r8  = 0x00007f5c3bffe780
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =               +67
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = +3.2252605360517e-319
+xmm5  =                +0
+xmm6  =               +59
+xmm7  =             +1770
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 1 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 000000000000000000
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x0000000000000044
+rsi = 0x00007f5c3bfec114
+rdi = 0x00007f5c3bfde790
+r8  = 0x00007f5c3bffe780
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =               +68
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = +3.2252605360517e-319
+xmm5  =                +0
+xmm6  =               +59
+xmm7  =             +1770
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 1 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 000000000000000000
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x0000000000000045
+rsi = 0x00007f5c3bfec114
+rdi = 0x00007f5c3bfde790
+r8  = 0x00007f5c3bffe780
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =               +69
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = +3.2252605360517e-319
+xmm5  =                +0
+xmm6  =               +59
+xmm7  =             +1770
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 1 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 000000000000000000
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x0000000000000046
+rsi = 0x00007f5c3bfec114
+rdi = 0x00007f5c3bfde790
+r8  = 0x00007f5c3bffe780
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =               +70
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = +3.2252605360517e-319
+xmm5  =                +0
+xmm6  =               +59
+xmm7  =             +1770
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 2 start 1/1 =(command line):1
+0011    KSHORT   5 180
+0012    ISGE     4   5
+0014    SUB      0   0   4
+0015    JMP      5 => 0019
+0019    JFORL    1   1
+---- TRACE 2 IR
+0001 rbp      int SLOAD  #2    PI
+....              SNAP   #0   [ ---- ---- 0001 ---- ---- 0001 ]
+....              SNAP   #1   [ ---- ---- 0001 ---- ---- 0001 ]
+0003       >  int LT     0001  +180
+....              SNAP   #2   [ ---- ---- 0001 ---- ---- 0001 ]
+0004 xmm7  >  flt SLOAD  #1    T
+0005 xmm6     flt CONV   0001  flt.int
+0006 xmm7     flt SUB    0004  0005
+0007 rbp      int ADD    0001  +1
+....              SNAP   #3   [ ---- 0006 ]
+0008       >  int LE     0007  +300
+0009 xmm6     flt CONV   0007  flt.int
+....              SNAP   #4   [ ---- 0006 0009 ---- ---- 0009 ]
+---- TRACE 2 mcode 127
+0bccfefd  mov r11, 0x7f5c3bfde608 
+0bccff07  mov dword [r11], 0x2    
+0bccff0e  cmp ebp, 0xb4           
+0bccff14  jge 0xbcc0014           	->1
+0bccff1a  cmp dword [r10+0x8], 0xfffffff2
+0bccff22  jnz 0xbcc0018           	->2
+0bccff28  movsd xmm7, qword [r10] 
+0bccff2d  xorps xmm6, xmm6        
+0bccff30  cvtsi2sd xmm6, ebp      
+0bccff34  subsd xmm7, xmm6        
+0bccff38  add ebp, 0x1            
+0bccff3b  cmp ebp, 0x12c          
+0bccff41  jg 0xbcc001c            	->3
+0bccff47  xorps xmm6, xmm6        
+0bccff4a  cvtsi2sd xmm6, ebp      
+0bccff4e  mov dword [r10+0x48], 0xfffffff2
+0bccff56  movsd [r10+0x40], xmm6  
+0bccff5c  mov dword [r10+0x18], 0xfffffff2
+0bccff64  movsd [r10+0x10], xmm6  
+0bccff6a  mov dword [r10+0x8], 0xfffffff2
+0bccff72  movsd [r10], xmm7       
+0bccff77  jmp 0xbccff83           
+---- TRACE 2 stop -> 1
+
+---- TRACE 2 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 000000000000000000
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x00000000000000b4
+rsi = 0x00007f5c3bfe0870
+rdi = 0x00007f5c3bfe03d8
+r8  = 0x0000000000000026
+r9  = 0x0000000000000026
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =               +71
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = +7.0632744564455e-304
+xmm5  =                +0
+xmm6  =              +180
+xmm7  =            -12570
+xmm8  = +2.1840409025922e-317
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 =              -nan
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 2 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 0x000000000000000a
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x00000000000000b5
+rsi = 0x00007f5c3b2a79e0
+rdi = 0x0000000000000001
+r8  = 0x000000000000000a
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =              +181
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = -5.486124068794e+303
+xmm5  =                +0
+xmm6  =              +180
+xmm7  =              +180
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 2 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 0x000000000000000a
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x00000000000000b6
+rsi = 0x00007f5c3b2a79e0
+rdi = 0x0000000000000001
+r8  = 0x000000000000000a
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =              +182
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = -5.486124068794e+303
+xmm5  =                +0
+xmm6  =              +180
+xmm7  =              +181
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 2 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 0x000000000000000a
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x00000000000000b7
+rsi = 0x00007f5c3b2a79e0
+rdi = 0x0000000000000001
+r8  = 0x000000000000000a
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =              +183
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = -5.486124068794e+303
+xmm5  =                +0
+xmm6  =              +180
+xmm7  =              +182
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 2 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 0x000000000000000a
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x00000000000000b8
+rsi = 0x00007f5c3b2a79e0
+rdi = 0x0000000000000001
+r8  = 0x000000000000000a
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =              +184
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = -5.486124068794e+303
+xmm5  =                +0
+xmm6  =              +180
+xmm7  =              +183
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 2 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 0x000000000000000a
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x00000000000000b9
+rsi = 0x00007f5c3b2a79e0
+rdi = 0x0000000000000001
+r8  = 0x000000000000000a
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =              +185
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = -5.486124068794e+303
+xmm5  =                +0
+xmm6  =              +180
+xmm7  =              +184
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 2 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 0x000000000000000a
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x00000000000000ba
+rsi = 0x00007f5c3b2a79e0
+rdi = 0x0000000000000001
+r8  = 0x000000000000000a
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =              +186
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = -5.486124068794e+303
+xmm5  =                +0
+xmm6  =              +180
+xmm7  =              +185
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 2 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 0x000000000000000a
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x00000000000000bb
+rsi = 0x00007f5c3b2a79e0
+rdi = 0x0000000000000001
+r8  = 0x000000000000000a
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =              +187
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = -5.486124068794e+303
+xmm5  =                +0
+xmm6  =              +180
+xmm7  =              +186
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 2 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 0x000000000000000a
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x00000000000000bc
+rsi = 0x00007f5c3b2a79e0
+rdi = 0x0000000000000001
+r8  = 0x000000000000000a
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =              +188
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = -5.486124068794e+303
+xmm5  =                +0
+xmm6  =              +180
+xmm7  =              +187
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 2 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 0x000000000000000a
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x00000000000000bd
+rsi = 0x00007f5c3b2a79e0
+rdi = 0x0000000000000001
+r8  = 0x000000000000000a
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =              +189
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = -5.486124068794e+303
+xmm5  =                +0
+xmm6  =              +180
+xmm7  =              +188
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 3 start 2/1 =(command line):1
+0016    GGET     5   0      ; "print"
+0017    MOV      6   4
+0018    CALL     5   1   2
+0000    . FUNCC               ; print
+---- TRACE 3 IR
+0001 rax      int SLOAD  #2    PI
+....              SNAP   #0   [ ---- ---- 0001 ---- ---- 0001 ]
+0002 [200]    fun SLOAD  #0    R
+0003 rax      tab FLOAD  0002  func.env
+0004 [200]    int FLOAD  0003  tab.hmask
+0005 rax   >  int EQ     0004  +63
+0006 [200]    p32 FLOAD  0003  tab.node
+0007 rax   >  p32 HREFK  0006  "print" @55
+0008 rax   >  fun HLOAD  0007
+0009 [200] >  fun EQ     0008  print
+---- TRACE 3 abort =(command line):1 -- NYI: FastFunc print
+
+---- TRACE 2 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 0x000000000000000a
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x00000000000000be
+rsi = 0x00007f5c3b2a79e0
+rdi = 0x0000000000000001
+r8  = 0x000000000000000a
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =              +190
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = -5.486124068794e+303
+xmm5  =                +0
+xmm6  =              +180
+xmm7  =              +189
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 3 start 2/1 =(command line):1
+0016    GGET     5   0      ; "print"
+0017    MOV      6   4
+0018    CALL     5   1   2
+0000    . FUNCC               ; print
+---- TRACE 3 IR
+0001 rax      int SLOAD  #2    PI
+....              SNAP   #0   [ ---- ---- 0001 ---- ---- 0001 ]
+0002 [200]    fun SLOAD  #0    R
+0003 rax      tab FLOAD  0002  func.env
+0004 [200]    int FLOAD  0003  tab.hmask
+0005 rax   >  int EQ     0004  +63
+0006 [200]    p32 FLOAD  0003  tab.node
+0007 rax   >  p32 HREFK  0006  "print" @55
+0008 rax   >  fun HLOAD  0007
+0009 [200] >  fun EQ     0008  print
+---- TRACE 3 abort =(command line):1 -- NYI: FastFunc print
+
+---- TRACE 2 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 0x000000000000000a
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x00000000000000bf
+rsi = 0x00007f5c3b2a79e0
+rdi = 0x0000000000000001
+r8  = 0x000000000000000a
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =              +191
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = -5.486124068794e+303
+xmm5  =                +0
+xmm6  =              +180
+xmm7  =              +190
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 3 start 2/1 =(command line):1
+0016    GGET     5   0      ; "print"
+0017    MOV      6   4
+0018    CALL     5   1   2
+0000    . FUNCC               ; print
+---- TRACE 3 IR
+0001 rax      int SLOAD  #2    PI
+....              SNAP   #0   [ ---- ---- 0001 ---- ---- 0001 ]
+0002 [200]    fun SLOAD  #0    R
+0003 rax      tab FLOAD  0002  func.env
+0004 [200]    int FLOAD  0003  tab.hmask
+0005 rax   >  int EQ     0004  +63
+0006 [200]    p32 FLOAD  0003  tab.node
+0007 rax   >  p32 HREFK  0006  "print" @55
+0008 rax   >  fun HLOAD  0007
+0009 [200] >  fun EQ     0008  print
+---- TRACE 3 abort =(command line):1 -- NYI: FastFunc print
+
+---- TRACE 2 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 0x000000000000000a
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x00000000000000c0
+rsi = 0x00007f5c3b2a79e0
+rdi = 0x0000000000000001
+r8  = 0x000000000000000a
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =              +192
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = -5.486124068794e+303
+xmm5  =                +0
+xmm6  =              +180
+xmm7  =              +191
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 3 start 2/1 =(command line):1
+0016    GGET     5   0      ; "print"
+0017    MOV      6   4
+0018    CALL     5   1   2
+0000    . FUNCC               ; print
+---- TRACE 3 IR
+0001 rax      int SLOAD  #2    PI
+....              SNAP   #0   [ ---- ---- 0001 ---- ---- 0001 ]
+0002 [200]    fun SLOAD  #0    R
+0003 rax      tab FLOAD  0002  func.env
+0004 [200]    int FLOAD  0003  tab.hmask
+0005 rax   >  int EQ     0004  +63
+0006 [200]    p32 FLOAD  0003  tab.node
+0007 rax   >  p32 HREFK  0006  "print" @55
+0008 rax   >  fun HLOAD  0007
+0009 [200] >  fun EQ     0008  print
+---- TRACE 3 abort =(command line):1 -- NYI: FastFunc print
+
+---- TRACE 2 exit 1
+General-purpose registers
+rax = 0x000000000bccff83
+rcx = 0x00007f5c3bfe1620
+rdx = 0x000000000000000a
+rbx = 0x00007f5c3bfec138
+rsp = 0x00007fffc278c790
+rbp = 0x00000000000000c1
+rsi = 0x00007f5c3b2a79e0
+rdi = 0x0000000000000001
+r8  = 0x000000000000000a
+r9  = 0x00007f5c3bffe780
+r10 = 0x00007f5c3bfe0c38
+r11 = 0x0000000000439ccf
+r12 = 0x0000000000405560
+r13 = 0x00007fffc278cb70
+r14 = 0x00007f5c3bfe03d8
+r15 = 0x00007f5c3bfec150
+Floating-point registers
+xmm0  =              +193
+xmm1  =              +300
+xmm2  =                +0
+xmm3  =                +0
+xmm4  = -5.486124068794e+303
+xmm5  =                +0
+xmm6  =              +180
+xmm7  =              +192
+xmm8  =                +0
+xmm9  =                +0
+xmm10 =                +0
+xmm11 =                +0
+xmm12 = +3.2252605360517e-319
+xmm13 =                +0
+xmm14 =                +0
+xmm15 =                +0
+
+---- TRACE 3 start 2/1 =(command line):1
+---- TRACE 3 IR
+0001 rbp      int SLOAD  #2    PI
+....              SNAP   #0   [ ---- ---- 0001 ---- ---- 0001 ]
+0002 xmm7     flt CONV   0001  flt.int
+....              SNAP   #1   [ ---- ---- 0002 ---- ---- 0002 ]
+---- TRACE 3 mcode 79
+0bccfea7  mov r11, 0x7f5c3bfde608 
+0bccfeb1  mov dword [r11], 0x3    
+0bccfeb8  xorps xmm7, xmm7        
+0bccfebb  cvtsi2sd xmm7, ebp      
+0bccfebf  mov dword [r10+0x48], 0xfffffff2
+0bccfec7  movsd [r10+0x40], xmm7  
+0bccfecd  mov dword [r10+0x18], 0xfffffff2
+0bccfed5  movsd [r10+0x10], xmm7  
+0bccfedb  xor eax, eax            
+0bccfedd  mov rbx, 0x7f5c3bfec128 
+0bccfee7  mov r14, 0x7f5c3bfe03d8 
+0bccfef1  jmp 0x439dcc            
+---- TRACE 3 stop -> interpreter
+
