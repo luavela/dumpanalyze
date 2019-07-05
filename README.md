@@ -83,6 +83,15 @@ In case of system-wide installation:
 dumpanalyze --dump /path/to/dump.txt --out-dir /tmp/dump-parsed
 ```
 
+Running tests
+-------------
+
+Run the following from the repository root:
+
+```
+python3 run-tests.py
+```
+
 Benchmarks
 ----------
 
@@ -108,6 +117,6 @@ Caveats
 Copyright and License
 ---------------------
 
-Copyright 2017 IPONWEB Ltd.
+Copyright 2017-2019 IPONWEB Ltd.
 
 This software is licensed under the terms of the MIT license.

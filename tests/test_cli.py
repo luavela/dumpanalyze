@@ -2,7 +2,7 @@
 #
 # This file is a part of the testing suite for dumpanalyze.
 #
-# Copyright 2017 IPONWEB Ltd.
+# Copyright 2017-2019 IPONWEB Ltd.
 #
 
 import sys
@@ -49,7 +49,14 @@ def test_bad_dump_path():
         assert "Bad dump file name " in err
 
 
-def _assert_view_traces_csv(fname):
+def _assert_view_traces_csv_1(fname):
+    assert os.path.isfile(fname)
+    data = list(open(fname))
+    assert len(data) == 1
+    assert "ID,PARENT,LINK_TYPE,NUM_BC,NUM_IR,NUM_SN,SIZE_MC\n" in data
+
+
+def _assert_view_traces_csv_2(fname):
     assert os.path.isfile(fname)
     data = open(fname).read()
     assert "1,0,loop,5,15,7,113" in data
@@ -57,13 +64,25 @@ def _assert_view_traces_csv(fname):
     assert "3,2,interpreter,0,2,2,79" in data
 
 
-def _assert_view_abort_reasons_csv(fname):
+def _assert_view_abort_reasons_csv_1(fname):
+    assert os.path.isfile(fname)
+    data = open(fname).read()
+    assert "failed to allocate mcode memory,1" in data
+
+
+def _assert_view_abort_reasons_csv_2(fname):
     assert os.path.isfile(fname)
     data = open(fname).read()
     assert "NYI: FastFunc print,4" in data
 
 
-def _assert_view_abort_reasons_txt(fname):
+def _assert_view_abort_reasons_txt_1(fname):
+    assert os.path.isfile(fname)
+    data = open(fname).read()
+    assert "failed to allocate mcode memory: 1" in data
+
+
+def _assert_view_abort_reasons_txt_2(fname):
     assert os.path.isfile(fname)
     data = open(fname).read()
     assert "NYI: FastFunc print: 4" in data
@@ -147,11 +166,22 @@ def test_normal_run():
         fname_traces = os.path.join(out_dir, "gen-1-traces.csv")
         fname_reasons_csv = os.path.join(out_dir, "gen-1-abort-reasons.csv")
         fname_reasons_txt = os.path.join(out_dir, "gen-1-abort-reasons.txt")
-        fname_tracebush = os.path.join(out_dir, "gen-1-bush-1.txt")
 
-        _assert_view_traces_csv(fname_traces)
-        _assert_view_abort_reasons_csv(fname_reasons_csv)
-        _assert_view_abort_reasons_txt(fname_reasons_txt)
+        _assert_view_traces_csv_1(fname_traces)
+        _assert_view_abort_reasons_csv_1(fname_reasons_csv)
+        _assert_view_abort_reasons_txt_1(fname_reasons_txt)
+
+        assert not os.path.isfile(os.path.join(out_dir, "gen-1-bush-1.txt"))
+        assert not os.path.isfile(os.path.join(out_dir, "gen-1-bush-1.png"))
+
+        fname_traces = os.path.join(out_dir, "gen-2-traces.csv")
+        fname_reasons_csv = os.path.join(out_dir, "gen-2-abort-reasons.csv")
+        fname_reasons_txt = os.path.join(out_dir, "gen-2-abort-reasons.txt")
+        fname_tracebush = os.path.join(out_dir, "gen-2-bush-1.txt")
+
+        _assert_view_traces_csv_2(fname_traces)
+        _assert_view_abort_reasons_csv_2(fname_reasons_csv)
+        _assert_view_abort_reasons_txt_2(fname_reasons_txt)
         _assert_view_tracebush_txt(fname_tracebush)
 
-        assert os.path.isfile(os.path.join(out_dir, "gen-1-bush-1.png"))
+        assert os.path.isfile(os.path.join(out_dir, "gen-2-bush-1.png"))

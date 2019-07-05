@@ -3,7 +3,7 @@
 # Compilation abort reason.
 # This module is a part of the toolkit for processing LuaJIT plain text dumps.
 #
-# Copyright 2017 IPONWEB Ltd.
+# Copyright 2017-2019 IPONWEB Ltd.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ import re
 
 
 class AbortReason:
-    re_abort_reason = re.compile(" abort (.+?):(\d+) -- (.+)$")
+    re_abort_reason = re.compile(r" abort (.+?):(\d+) -- (.+)$")
 
     def __init__(self, line):
         match = self.re_abort_reason.search(line)

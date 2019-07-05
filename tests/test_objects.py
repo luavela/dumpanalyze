@@ -2,7 +2,7 @@
 #
 # This file is a part of the testing suite for dumpanalyze.
 #
-# Copyright 2017 IPONWEB Ltd.
+# Copyright 2017-2019 IPONWEB Ltd.
 #
 
 import os

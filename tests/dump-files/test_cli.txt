@@ -1,4 +1,18 @@
 ---- TRACE 1 start =(command line):1
+0002    UGET     1   0      ; st
+0003    ISF          1
+0011    RET0     0   1
+---- TRACE 1 IR
+....              SNAP   #0   [ ---- ---- ]
+0001 rax      fun SLOAD  #0    R
+0002 rax   >  p32 UREFC  0001  #0  
+0003 rax   >  nil ULOAD  0002
+....              SNAP   #1   [ ---- ]
+---- TRACE 1 abort =(command line):1 -- failed to allocate mcode memory
+
+---- TRACE flush
+
+---- TRACE 1 start =(command line):1
 0006    KSHORT   5  60
 0007    ISGE     4   5
 0009    ADD      0   0   4

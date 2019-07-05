@@ -1,15 +1,20 @@
 # -*- coding: utf-8 -*-
 #
 # setup.py for dumpanalyze
-# Copyright 2017 IPONWEB Ltd. See License Notice in LICENSE
+# Copyright 2017-2019 IPONWEB Ltd. See License Notice in LICENSE
 #
 
 import re
 from setuptools import setup
 
+with open('requirements-setup.txt') as fh:
+    setup_requires = fh.read().splitlines()
 
-with open('requirements.txt') as fh:
+with open('requirements-install.txt') as fh:
     install_requires = fh.read().splitlines()
+
+with open('requirements-tests.txt') as fh:
+    tests_require = fh.read().splitlines()
 
 
 def version():
@@ -30,7 +35,7 @@ setup(
     author='Anton Soldatov',
     author_email='asoldatov@iponweb.net',
     license='MIT',
-    # url='https://github.com/iponweb/dumpanalyze',
+    url='https://github.com/iponweb/dumpanalyze',
     packages=['dumpanalyze', 'dumpanalyze.view'],
     zip_safe=False,
     entry_points={
@@ -44,12 +49,13 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Topic :: Utilities',
     ],
     keywords='luajit dump',
-    setup_requires=['pytest-runner'],
+    setup_requires=setup_requires,
     install_requires=install_requires,
-    tests_require=['pytest', 'flake8'],
+    tests_require=tests_require,
 )

@@ -3,7 +3,7 @@
 # Line-by-line parser of a LuaJIT plain text dump.
 # This module is a part of the toolkit for processing LuaJIT plain text dumps.
 #
-# Copyright 2017 IPONWEB Ltd.
+# Copyright 2017-2019 IPONWEB Ltd.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -53,7 +53,7 @@ class DumpParser:
 
     # Regular expression to detect a new logical portion of
     # trace-related data or a global trace flush:
-    re_trace_header = re.compile("^---- TRACE (?:(\d+ )?(\S+))")
+    re_trace_header = re.compile(r"^---- TRACE (?:(\d+ )?(\S+))")
 
     def __init__(self, dump):
         # Errors are ignored because non-UTF-8 string values
@@ -92,9 +92,13 @@ class DumpParser:
         self._abort_reasons = []
 
     def _parse_line(self, line):
+        if line == "\n":
+            return
+
         match = self.re_trace_header.match(line)
         if match:
-            self._parse_header_line(line, match.group(2), int(match.group(1)))
+            trace_id = int(match.group(1) or 0)
+            self._parse_header_line(line, match.group(2), trace_id)
         else:
             self._trace.process_data(self._state, line)
 

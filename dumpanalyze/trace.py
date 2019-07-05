@@ -3,7 +3,7 @@
 # A compiled trace.
 # This module is a part of the toolkit for processing LuaJIT plain text dumps.
 #
-# Copyright 2017 IPONWEB Ltd.
+# Copyright 2017-2019 IPONWEB Ltd.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -30,12 +30,12 @@ import re
 
 class Trace:
     # Regular expressions to extract data from trace header lines:
-    re_header_start = re.compile(" start (?:((\d+)/(\d+)) )?([^:]+):(\d+)$")
-    re_header_mcode = re.compile(" mcode (\d+)$")
-    re_header_stop = re.compile(" stop -> (.+)$")
+    re_header_start = re.compile(r" start (?:((\d+)/(\d+)) )?([^:]+):(\d+)$")
+    re_header_mcode = re.compile(r" mcode (\d+)$")
+    re_header_stop = re.compile(r" stop -> (.+)$")
 
     # Regular expressions to extract data from trace data lines:
-    re_data_mcode = re.compile("->(\d+)")
+    re_data_mcode = re.compile(r"->(\d+)")
 
     def __init__(self, trace_id):
         self._id = trace_id
